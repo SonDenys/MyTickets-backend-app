@@ -1,11 +1,12 @@
 const express = require("express");
 const formidable = require("express-formidable");
 const mongoose = require("mongoose");
-require("dotenv").config();
+
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
+require("dotenv").config();
 const app = express();
 app.use(formidable());
 app.use(cors());
