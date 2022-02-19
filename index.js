@@ -12,11 +12,20 @@ app.use(formidable());
 app.use(cors());
 
 // Mongoose connect
-mongoose.connect("mongodb://localhost:27017/mytroopers-app", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
-});
+// mongoose.connect("mongodb://localhost:27017/mytroopers-app", {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+// });
+
+mongoose.connect(
+  "mongodb+srv://denis-admin:iSsb9oKkyjXxJ4EV@cluster0.ynyzb.mongodb.net/test",
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  }
+);
 
 // Import de Cloudinary
 // cloudinary.config({
