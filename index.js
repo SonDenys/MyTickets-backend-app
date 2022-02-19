@@ -18,15 +18,12 @@ app.use(cors());
 //   useCreateIndex: true,
 // });
 
-mongoose.connect(
-  "mongodb+srv://denis-admin:iSsb9oKkyjXxJ4EV@cluster0.ynyzb.mongodb.net/test",
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  }
-);
-
+// Mongoose connect
+mongoose.connect(process.env.MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+});
 // Import de Cloudinary
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
