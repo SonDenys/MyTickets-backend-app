@@ -41,21 +41,11 @@ router.post("/user/create_tickets", isAuthenticated, async (req, res) => {
 router.get("/user/get_tickets", async (req, res) => {
   console.log("route : /user/get_tickets");
   try {
-    // Creation of an object in which we will store our different filters
-    // const filters = {};
-
-    // if (req.fields.name) {
-    //   filters.tickets.name = new RegExp(req.query.name, "i");
-    // }
-
     // We search thanks to the function find(), all the documents of the collection 'tickets' :
     const tickets = await Tickets.find();
 
-    // this line will return the number of tickets found according to the filters
-    // const count = await Tickets.countDocuments(filters);
+    // We return then all the documents founded :od
 
-    // We return then all the documents founded :
-    // res.json({ tickets: tickets, count: count });
     res.json(tickets);
   } catch (error) {
     res.status(400).json({ error: error.message });
