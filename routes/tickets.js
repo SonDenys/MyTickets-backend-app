@@ -45,7 +45,7 @@ router.get("/user/get_tickets", async (req, res) => {
     const filters = {};
 
     if (req.fields.name) {
-      filters.name = new RegExp(req.query.name, "i");
+      filters.tickets.name = new RegExp(req.query.name, "i");
     }
 
     // We search thanks to the function find(), all the documents of the collection 'tickets' :
