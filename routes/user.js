@@ -63,7 +63,9 @@ router.post("/user/login", async (req, res) => {
           id: user._id,
         });
       } else {
-        res.status(401).json({ message: "Unauthorized" });
+        res
+          .status(401)
+          .json({ message: "Unauthorized, the hashes are not equals" });
       }
     } else {
       res.status(401).json({ message: "Unauthorized" });

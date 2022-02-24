@@ -41,6 +41,13 @@ router.post("/user/create_tickets", isAuthenticated, async (req, res) => {
 router.get("/user/get_tickets", async (req, res) => {
   console.log("route : /user/get_tickets");
   try {
+    // Creation of an object in which we will store our different filters
+    let filters = {};
+
+    if (req.fields.name) {
+      filters.name = new RegExp(req.query.name, "i");
+    }
+
     // We search thanks to the function find(), all the documents of the collection 'tickets' :
     const tickets = await Tickets.find();
 
