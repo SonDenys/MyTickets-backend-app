@@ -51,10 +51,14 @@ router.get("/user/get_tickets", async (req, res) => {
     // We search thanks to the function find(), all the documents of the collection 'tickets' :
     const tickets = await Tickets.find();
 
+    // this line will return the number of tickets found according to the filters
+    const count = await Tickets.countDocuments(filters);
+
     // We return then all the documents founded :
-    res.json(tickets);
+    res.json({ tickets: tickets, count: count });
   } catch (error) {
     res.status(400).json({ error: error.message });
+    console.log(error.message);
   }
 });
 
