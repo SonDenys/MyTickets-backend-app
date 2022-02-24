@@ -59,6 +59,8 @@ router.get("/user/search_tickets", async (req, res) => {
   }
 });
 
+// ------------- ROUTE GET ALL-----------------
+
 router.get("/user/get_tickets", async (req, res) => {
   console.log("route : /user/get_tickets");
   try {
