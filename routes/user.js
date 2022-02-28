@@ -13,10 +13,15 @@ router.post("/user/signup", async (req, res) => {
     // Check if the email doesn't already exist in the database
     const user = await User.findOne({ email: req.fields.email });
     if (!user) {
-      // if it doesn't exist => suscription
+      // if it doesn't exist => signup
+
       // Encrypt the password
+      // The level of password encryption, using only MD5 or SHA256 is not sufficient.
+      // So we generate a new Salt thanks to the Uid package
       const salt = uid2(16);
+      // Then we create we create a new Hash (password + salt) by concatenating the password and the salt
       const hash = SHA256(req.fields.password + salt).toString(encBase64);
+      // We generate also a token that will be used to authenticate the user thanks to the cookies
       const token = uid2(64);
 
       // Create a new user
@@ -27,6 +32,7 @@ router.post("/user/signup", async (req, res) => {
         salt: salt,
       });
 
+      // Then save the user in the DBB
       await newUser.save();
 
       // Answer to the client
@@ -49,7 +55,9 @@ router.post("/user/login", async (req, res) => {
     // Check the user who wants to connect
     const user = await User.findOne({ email: req.fields.email });
     if (user) {
-      // Create a new hash with the password
+      // Create a new hash with the password with taking :
+      // - the salt of the user already saved in the DBB. Remember that this salt is saved in the DBB after the Signup
+      // - the password the user is typing..
       const newHash = SHA256(req.fields.password + user.salt).toString(
         encBase64
       );

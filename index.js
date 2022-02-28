@@ -12,27 +12,13 @@ app.use(formidable());
 app.use(cors());
 
 // Mongoose connect
-// mongoose.connect("mongodb://localhost:27017/mytroopers-app", {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-// });
-
-// Mongoose connect
 mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
-// Import de Cloudinary
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-//   secure: true,
-// });
 
-// Import des routes
+// Routes Import
 const userRoutes = require("./routes/user");
 app.use(userRoutes);
 
